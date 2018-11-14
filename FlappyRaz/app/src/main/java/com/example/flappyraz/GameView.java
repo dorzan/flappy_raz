@@ -1,5 +1,6 @@
 package com.example.flappyraz;
 
+import android.app.Activity;
 import android.content.Context;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
@@ -8,16 +9,18 @@ import android.view.SurfaceView;
 public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 
     GameThread gameThread;
+    GameActivity activity;
 
     public GameView(Context context) {
         super(context);
+        activity = (GameActivity)context;
         initView();
     }
 
     @Override
     public void surfaceCreated(SurfaceHolder holder) {
         if(!gameThread.isRunning()){
-            gameThread = new GameThread(holder);
+            gameThread = new GameThread(holder, activity);
             gameThread.start();
         }
         else {
@@ -49,7 +52,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
         SurfaceHolder holder = getHolder();
         holder.addCallback(this);
         setFocusable(true);
-        gameThread = new GameThread(holder);
+        gameThread = new GameThread(holder, activity);
 
     }
 
@@ -57,7 +60,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
     public boolean onTouchEvent(MotionEvent event) {
         int action = event.getAction();
         if (action == MotionEvent.ACTION_DOWN)
-            AppConstants.gameEngine.raz.setSpeedY(-80);
+            AppConstants.gameEngine.raz.setSpeedY(-35);
 
         return true;
     }

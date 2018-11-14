@@ -1,5 +1,6 @@
 package com.example.flappyraz;
 
+import android.app.Activity;
 import android.graphics.Canvas;
 import android.os.SystemClock;
 import android.util.Log;
@@ -11,10 +12,14 @@ public class GameThread extends Thread {
     boolean isRunning; // Flag to detect wether the thread is running or not
     long startTime, loopTime; // Loop start time and loop duration
     long DELAY = 20; // Delay in millisecondsbetween screen refreshes
+    GameActivity activity;
 
-    public GameThread(SurfaceHolder surfaceHolder) {
+    public GameThread(SurfaceHolder surfaceHolder, GameActivity activity) {
         this.surfaceHolder = surfaceHolder;
         isRunning = true;
+        this.activity = activity;
+
+
     }
 
     @Override
@@ -27,7 +32,7 @@ public class GameThread extends Thread {
             canvas = surfaceHolder.lockCanvas(null);
             if(canvas != null){
                 synchronized (surfaceHolder){
-                    AppConstants.getGameEngine().updateAndDrawBackgroundImage(canvas);
+                    AppConstants.getGameEngine().updateAndDrawBackgroundImage(canvas, activity);
                     //unlocking the canvas
                     surfaceHolder.unlockCanvasAndPost(canvas);
                 }
