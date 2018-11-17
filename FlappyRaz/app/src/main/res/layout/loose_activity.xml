@@ -11,15 +11,15 @@
         android:id="@+id/textView2"
         android:layout_width="164dp"
         android:layout_height="42dp"
-        android:text="FUCK YOU"
+        android:onClick="startGame"
         android:textColorLink="@color/colorPrimaryDark"
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.6"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.076"
-        android:onClick="startGame"/>
+        app:layout_constraintVertical_bias="0.076" />
 
     <Button
         android:id="@+id/button"

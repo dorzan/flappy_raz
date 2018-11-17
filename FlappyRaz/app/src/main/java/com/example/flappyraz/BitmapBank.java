@@ -11,7 +11,7 @@ public class BitmapBank {
         background=BitmapFactory.decodeResource(res, R.drawable.d7ca67278858823d19c95902aa84494c);
         background = scaleImage(background);
         raz=BitmapFactory.decodeResource(res, R.drawable.raz);
-        raz = raz.createScaledBitmap(raz,200,200,false);
+        raz = raz.createScaledBitmap(raz,180,180,false);
         gil=BitmapFactory.decodeResource(res, R.drawable.gil);
         gil = gil.createScaledBitmap(gil,150,150,false);
         play=BitmapFactory.decodeResource(res, R.drawable.play);

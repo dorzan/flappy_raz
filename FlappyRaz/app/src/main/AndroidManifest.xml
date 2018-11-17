@@ -19,6 +19,8 @@
     </activity>
     <activity android:name=".LooseActivity">
     </activity>
+        <activity android:name=".PauseActivity" android:theme="@style/Theme.Transparent">
+        </activity>
 
     </application>
 

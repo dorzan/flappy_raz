@@ -1,6 +1,7 @@
 package com.example.flappyraz;
 
 import android.graphics.Canvas;
+import android.graphics.Paint;
 
 import java.util.concurrent.TimeUnit;
 
@@ -9,17 +10,20 @@ public class GameEngine {
     BackgroundImage backgroundImage;
     Raz raz;
     ObstacleList obstacleList;
+    Score score;
+
 
 
     public GameEngine() {
         backgroundImage = new BackgroundImage();
         raz = new Raz();
         obstacleList = new ObstacleList();
+        score = new Score();
 
     }
 
     public void updateAndDrawBackgroundImage(Canvas canvas, GameActivity activity) {
-        //background
+        /**** background ****/
         backgroundImage.setX(backgroundImage.getX() - backgroundImage.getVelocity());
         if (backgroundImage.getX() < -AppConstants.getBitmapBank().getBackgroundWidth()) {
             backgroundImage.setX(0);
@@ -38,7 +42,6 @@ public class GameEngine {
             raz.setY(raz.getY() + raz.getSpeedY());
         }
         else raz.setY(-399);
-
         //canvas.drawBitmap(AppConstants.getBitmapBank().getRaz(), raz.getX(), raz.getY(), null);
         canvas.drawBitmap(AppConstants.getBitmapBank().getRaz(), raz.getX(), raz.getY(), null);
 
@@ -49,10 +52,18 @@ public class GameEngine {
         if (obstacleList.getHead().getPos() < -AppConstants.getBitmapBank().getGilWidth() )
             obstacleList.removeHead();
 
-        if(obstacleList.getLast().getPos()<AppConstants.SCREEN_WIDTH-600 )
+        if(obstacleList.getLast().getPos()<AppConstants.DISTANCE_BETWEEN_OBSTACLES )
             obstacleList.insertObstacle();
 
         drawAndMoveObstacles(canvas);
+
+
+
+        /**** score ****/
+        if(obstacleList.checkIfScored(raz.getX() - AppConstants.getBitmapBank().getRaz().getWidth()))
+            score.incrementScore();
+        canvas.drawText(score.getScore(),  5,100, score.getPaint());
+
     }
 
     private void drawAndMoveObstacles(Canvas canvas){
@@ -99,5 +110,7 @@ public class GameEngine {
         }
         return false;
     }
+
+
 
 }

@@ -41,4 +41,18 @@ public class ObstacleList {
     public int getNumOfFaces(){
         return numOfFaces;
     }
+
+    public boolean checkIfScored(int razX){
+        Obstacle temp = head;
+        while(temp!= null){
+            if (!temp.isScored()){
+                if(razX > temp.getPos()){
+                    temp.setScored();
+                    return true;
+                }
+            }
+            temp = temp.getNext();
+        }
+        return false;
+    }
 }

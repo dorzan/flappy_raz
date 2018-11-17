@@ -7,6 +7,7 @@ public class Obstacle {
 
     int height, face, pos, speed;
     Obstacle next;
+    boolean scored;
 
 
     public Obstacle(){
@@ -14,6 +15,7 @@ public class Obstacle {
         height = (int )(Math.random() * 6 + 1);
         face = 1;
         pos = AppConstants.SCREEN_WIDTH;
+        scored = false;
     }
 
     public int getHeight() {
@@ -34,6 +36,10 @@ public class Obstacle {
         return pos;
     }
 
+    public boolean isScored() {
+        return scored;
+    }
+
     public void setHeight(int height) {
         this.height = height;
     }
@@ -48,5 +54,9 @@ public class Obstacle {
 
     public void setPos(int pos) {
         this.pos = pos;
+    }
+
+    public void setScored() {
+        scored = true;
     }
 }

@@ -4,8 +4,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.util.Log;
-import android.view.View;
 
 public class GameActivity extends Activity {
 
@@ -19,12 +17,20 @@ public class GameActivity extends Activity {
         setContentView(gameView);
 
     }
-
-
+/*
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Intent intent;
+            intent = new Intent(GameActivity.this, PauseActivity.class);
+            startActivity(intent);
+        }
+*/
 
     public void lost(){
-
+        int score = Score.score;
         Intent intent = new Intent(this, LooseActivity.class);
+        intent.putExtra("score", score);
         startActivity(intent);
         finish();
     }

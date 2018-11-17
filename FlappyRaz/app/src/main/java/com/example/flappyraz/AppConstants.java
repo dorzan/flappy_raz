@@ -8,7 +8,7 @@ import android.view.WindowManager;
 public class AppConstants {
     static BitmapBank bitmapBank; //Bitmap object reference
     static GameEngine gameEngine; // GameEngine object reference
-    static int SCREEN_WIDTH, SCREEN_HEIGHT, FLOOR_HEIGHT;
+    static int SCREEN_WIDTH, SCREEN_HEIGHT, FLOOR_HEIGHT,DISTANCE_BETWEEN_OBSTACLES;
 
 
     public static void initialization(Context context){
@@ -16,6 +16,7 @@ public class AppConstants {
         bitmapBank = new BitmapBank(context.getResources());
         gameEngine = new GameEngine();
         FLOOR_HEIGHT = SCREEN_HEIGHT - 240;
+        DISTANCE_BETWEEN_OBSTACLES = SCREEN_WIDTH-600;
     }
 
     //Return BitmapBank instance
